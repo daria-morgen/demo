@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HeadController {
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public String showAllQuestions(Model model) {
-
+    public String showStartPage(Model model) {
         return "index";
     }
 }
