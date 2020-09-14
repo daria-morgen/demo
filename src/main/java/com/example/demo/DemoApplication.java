@@ -1,7 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.generics.inheritanceInGenerics.Animals;
-import com.example.demo.generics.inheritanceInGenerics.BoundedWildCards;
+import com.example.demo.generics.inheritanceInGenerics.BoundedGeneric;
 import com.example.demo.generics.inheritanceInGenerics.aminal.*;
 import com.example.demo.generics.plasticBag.PlasticBag;
 import com.example.demo.generics.plasticBag.nonGenericExample.PlasticBagNonGeneric;
@@ -100,7 +100,7 @@ public class DemoApplication {
 
         Animals<Animal> animals = new Animals<Animal>(animalsAr);
         // Добавим метод для вывода цвета всех животных
-        BoundedWildCards.showColor(animals);
+        BoundedGeneric.showColor(animals);
 
 
 
@@ -125,8 +125,8 @@ public class DemoApplication {
         Animals<Cat> cats = new Animals<Cat>(catsAr);
         Animals<Egyptian> egyptianAnimals = new Animals<Egyptian>(egyptian);
 
-        BoundedWildCards.showVoice(cats);
-        BoundedWildCards.showVoice(egyptianAnimals);
+        BoundedGeneric.showVoice(cats);
+        BoundedGeneric.showVoice(egyptianAnimals);
 
         // Передадим в этот метод объект с собаками.
         Doberman doberman = new Doberman("black", "wow", "meet");
@@ -138,17 +138,24 @@ public class DemoApplication {
         //BoundedWildCards.showVoice(dogs);
 
 
-        System.out.println(BoundedWildCards.isInAnimals(doberman,dogsAr));//true
-        System.out.println(BoundedWildCards.isInAnimals(doberman,animalsAr));//true
-        System.out.println(BoundedWildCards.isInAnimals(doberman,catsAr));//false
+        System.out.println(BoundedGeneric.isInAnimals(doberman,dogsAr));//true
+        System.out.println(BoundedGeneric.isInAnimals(doberman,animalsAr));//true
+        System.out.println(BoundedGeneric.isInAnimals(doberman,catsAr));//false
+//        System.out.println(BoundedWildCards.isInAnimals("Elephant",catsAr));//compile error
 
         // Пример указания конкретноготипа привызове обобщенного метода
-        System.out.println(BoundedWildCards.<Animal,Animal>isInAnimals(doberman,catsAr));//false
+        System.out.println(BoundedGeneric.<Animal,Animal>isInAnimals(doberman,catsAr));//false
 //        System.out.println(BoundedWildCards.<Dog,Doberman>isInAnimals(doberman,catsAr));//compile error
 
         //Ожидается что проверяем наличие кошки в коллекции кошек.
-        System.out.println(BoundedWildCards.isInCats(siamese,catsAr));//true
+        System.out.println(BoundedGeneric.isInCats(siamese,catsAr));//true
 //        System.out.println(BoundedWildCards.isInCats(doberman,catsAr));//compile error
+
+        BoundedGeneric siameseBoundedGeneric = new BoundedGeneric(siamese);
+        System.out.println(siameseBoundedGeneric.getAnimal().showColor());
+
+        BoundedGeneric dobermanBoundedGeneric = new BoundedGeneric(doberman);
+        System.out.println(dobermanBoundedGeneric.getAnimal().showColor());
 
 
     }
