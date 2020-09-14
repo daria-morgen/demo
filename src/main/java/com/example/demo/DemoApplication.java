@@ -137,8 +137,9 @@ public class DemoApplication {
         //BoundedWildCards.showVoice(dogs);
 
 
-        System.out.println(BoundedWildCards.isIn(doberman,dogsAr));
-        System.out.println(BoundedWildCards.isIn(doberman,animalsAr));
+        System.out.println(BoundedWildCards.isIn(doberman,dogsAr));//true
+        System.out.println(BoundedWildCards.isIn(doberman,animalsAr));//true
+        System.out.println(BoundedWildCards.isIn(doberman,catsAr));//false
 
     }
 

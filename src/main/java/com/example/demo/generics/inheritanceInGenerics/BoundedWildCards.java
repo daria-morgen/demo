@@ -17,6 +17,14 @@ public class BoundedWildCards {
         }
     }
 
+    /**
+     * Статический обобщенный метод, проверяет наличие конкретного животного в коллекции животных.
+     * @param animal
+     * @param animals
+     * @param <T>
+     * @param <V>
+     * @return
+     */
     public static <T extends Animal, V extends T> boolean isIn(T animal, V[] animals){
         for (V en : animals) {
             if (en.equals(animal)) return true;
