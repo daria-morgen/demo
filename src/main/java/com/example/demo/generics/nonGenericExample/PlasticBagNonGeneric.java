@@ -1,4 +1,4 @@
-package com.example.demo.generics;
+package com.example.demo.generics.nonGenericExample;
 
 import java.math.BigDecimal;
 

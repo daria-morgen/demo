@@ -1,12 +1,12 @@
 package com.example.demo;
 
 import com.example.demo.generics.PlasticBag;
-import com.example.demo.generics.PlasticBagNonGeneric;
+import com.example.demo.generics.nonGenericExample.PlasticBagNonGeneric;
 import com.example.demo.generics.PlasticBagOnlyForFruit;
 import com.example.demo.generics.PlasticBagOnlyForFruitAndGrow;
-import com.example.demo.generics.fruitsandvegetables.Apple;
-import com.example.demo.generics.fruitsandvegetables.Banana;
-import com.example.demo.generics.fruitsandvegetables.Tomato;
+import com.example.demo.generics.fruitsandvegetables.impl.Apple;
+import com.example.demo.generics.fruitsandvegetables.impl.Banana;
+import com.example.demo.generics.fruitsandvegetables.impl.Tomato;
 
 public class DemoApplication {
 
@@ -25,7 +25,6 @@ public class DemoApplication {
         tomatoPlasticBag.showType();
         Tomato tomato = tomatoPlasticBag.getFruit();
 
-
         //
 //        Banana banana = applePlasticBag.getFruit(); //compile error
         //
@@ -33,12 +32,12 @@ public class DemoApplication {
         //
 //        PlasticBag<int> plasticBagInt = new PlasticBag<int>();//compile error
 
-        //Ключевым моментом для понимания универсальных типов является то,
-        // что ссылка на одну конкретную версию универсального типа несовместима
-        // с другой версией того же универсального типа. Например, если предположить,
-        // что только что показанная программа, следующая строка кода находится в ошибке
-        // и не будет компилироваться:
-
+        /**Ключевым моментом для понимания универсальных типов является то,
+        * что ссылка на одну конкретную версию универсального типа несовместима
+        * с другой версией того же универсального типа. Например, если предположить,
+        * что только что показанная программа, следующая строка кода находится в ошибке
+        * и не будет компилироваться:
+        */
 //        applePlasticBag = bananaPlasticBag; //error
 
         //Пример без дженерика
@@ -60,35 +59,39 @@ public class DemoApplication {
         applePlasticBagOnlyForFruit.showType();
         PlasticBagOnlyForFruit<Banana> bananaPlasticBagOnlyForFruit = new PlasticBagOnlyForFruit<Banana>(new Banana());
         bananaPlasticBagOnlyForFruit.showType();
-//compile error
+        //compile error
 //        PlasticBagOnlyForFruit<Tomato> plasticBagOnlyForFruit =  new PlasticBagOnlyForFruit<Tomato>(new Tomato());//compile error
 
         //Пример с ограничением классов(нам нужны пакеты только для классов фруктов и тех,
         // кто реализует интерфейс Growable и Colourable)
-//compile error
+        PlasticBagOnlyForFruitAndGrow<Apple> applePlasticBagOnlyForFruitAndGrow = new PlasticBagOnlyForFruitAndGrow<Apple>(new Apple());//compile error
+        applePlasticBagOnlyForFruitAndGrow.getFruit().grow();
+        PlasticBagOnlyForFruitAndGrow<Banana> bananaPlasticBagOnlyForFruitAndGrow = new PlasticBagOnlyForFruitAndGrow<Banana>(new Banana());//compile error
+        bananaPlasticBagOnlyForFruitAndGrow.getFruit().grow();
+        //compile error
 //        PlasticBagOnlyForFruitAndGrow<Tomato> tomatoPlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Tomato>(new Tomato());//compile error
 
-        PlasticBagOnlyForFruitAndGrow<Apple> applePlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Apple>(new Apple());//compile error
-        applePlasticBagOnlyForFruitAndGrow.getFruit().grow();
-        PlasticBagOnlyForFruitAndGrow<Banana> bananaPlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Banana>(new Banana());//compile error
-        bananaPlasticBagOnlyForFruitAndGrow.getFruit().grow();
-
-        //Using Wildcard Arguments
-        // Как бы ни была полезна безопасность типов, иногда она может мешать совершенно приемлемым конструкциям.
-        // Например, учитывая класс PlasticBagOnlyForFruitAndGrow, предположим,
-        // что вы хотите добавить метод sameColor(), который определяет, содержат ли два объекта
-        // PlasticBagOnlyForFruitAndGrow (пакета) фрукт, возвращающие одинаковый цвет, независимо от того,
-        // какой тип данных(фруктов) содержит каждый объект
-
-        //Добавим в класс PlasticBagOnlyForFruitAndGrow метод sameColor, куда передадим параметризированный обьект
-        //Такая реализация не будет работать пока метод sameColor принимает PlasticBagOnlyForFruitAndGrow<T> plasticBag
-        //Заменим ее на PlasticBagOnlyForFruitAndGrow<?>
-        //Теперь PlasticBagOnlyForFruitAndGrow<?> соответствует любому объекту пакетов с фруктами,
-        // позволяя сравнивать цвет двух обьектов
-        if(applePlasticBagOnlyForFruitAndGrow.sameColor(bananaPlasticBagOnlyForFruitAndGrow)){
+        /**Using Wildcard Arguments
+        * Как бы ни была полезна безопасность типов, иногда она может мешать совершенно приемлемым конструкциям.
+        * Например, учитывая класс PlasticBagOnlyForFruitAndGrow, предположим,
+        * что вы хотите добавить метод sameColor(), который определяет, содержат ли два объекта
+        * PlasticBagOnlyForFruitAndGrow (пакета) с фруктами, возвращающие одинаковый цвет, независимо от того,
+        * какой тип данных(фруктов) содержит каждый объект
+        */
+        /** Добавим в класс PlasticBagOnlyForFruitAndGrow метод sameColor, куда передадим параметризированный обьект
+         * Такая реализация не будет работать пока метод sameColor принимает PlasticBagOnlyForFruitAndGrow<T> plasticBag
+         * Заменим ее на PlasticBagOnlyForFruitAndGrow<?>
+         * Теперь PlasticBagOnlyForFruitAndGrow<?> соответствует любому объекту пакетов с фруктами,
+         * позволяя сравнивать цвет двух обьектов
+         */
+        if (applePlasticBagOnlyForFruitAndGrow.sameColor(bananaPlasticBagOnlyForFruitAndGrow)) {
             System.out.println("Color are the same");
-        }else System.out.println("Color are not the same");
+        } else System.out.println("Color are not the same");
 
+        /**
+         * Ограниченный подстановочный знак особенно важен при создании
+         * универсального типа, который будет работать с иерархией классов
+         */
 
     }
 

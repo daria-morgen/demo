@@ -1,4 +1,8 @@
-package com.example.demo.generics.fruitsandvegetables;
+package com.example.demo.generics.fruitsandvegetables.impl;
+
+import com.example.demo.generics.fruitsandvegetables.Colourable;
+import com.example.demo.generics.fruitsandvegetables.Fruit;
+import com.example.demo.generics.fruitsandvegetables.Growable;
 
 public class Banana extends Fruit implements Growable, Colourable {
     @Override
