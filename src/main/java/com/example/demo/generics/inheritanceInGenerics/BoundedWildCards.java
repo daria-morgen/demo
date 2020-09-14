@@ -25,7 +25,13 @@ public class BoundedWildCards {
      * @param <V>
      * @return
      */
-    public static <T extends Animal, V extends T> boolean isIn(T animal, V[] animals){
+    public static <T extends Animal, V extends T> boolean isInAnimals(T animal, V[] animals){
+        for (V en : animals) {
+            if (en.equals(animal)) return true;
+        }
+        return false;
+    }
+    public static <T extends Cat, V extends T> boolean isInCats(T animal, V[] animals){
         for (V en : animals) {
             if (en.equals(animal)) return true;
         }

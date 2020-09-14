@@ -109,9 +109,10 @@ public class DemoApplication {
         //compile error
 //        BoundedWildCards.showVoice(animals);
 
+        Siamese siamese = new Siamese("gray", "mew", "fish");
 
         Cat catsAr[] = {
-                new Siamese("gray","mew","fish"),
+                siamese,
                 new Siamese("black","mew","bird"),
                 new Egyptian("pink","mew","fish")
 
@@ -137,9 +138,14 @@ public class DemoApplication {
         //BoundedWildCards.showVoice(dogs);
 
 
-        System.out.println(BoundedWildCards.isIn(doberman,dogsAr));//true
-        System.out.println(BoundedWildCards.isIn(doberman,animalsAr));//true
-        System.out.println(BoundedWildCards.isIn(doberman,catsAr));//false
+        System.out.println(BoundedWildCards.isInAnimals(doberman,dogsAr));//true
+        System.out.println(BoundedWildCards.isInAnimals(doberman,animalsAr));//true
+        System.out.println(BoundedWildCards.isInAnimals(doberman,catsAr));//false
+
+        //Ожидается что проверяем наличие кошки в коллекции кошек.
+        System.out.println(BoundedWildCards.isInCats(siamese,catsAr));//true
+//        System.out.println(BoundedWildCards.isInCats(doberman,catsAr));//compile error
+
 
     }
 
