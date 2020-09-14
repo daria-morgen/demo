@@ -6,4 +6,5 @@ public class Fruit {
         System.out.println("This parent of fruit " + fruitName + "!");
     }
 
+
 }

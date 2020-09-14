@@ -26,4 +26,5 @@ public class PlasticBag<T> {
     public void showType() {
         System.out.println("Type of T is: " + fruit.getClass().getName());
     }
+
 }

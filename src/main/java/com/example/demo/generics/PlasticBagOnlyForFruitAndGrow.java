@@ -1,10 +1,12 @@
 package com.example.demo.generics;
 
+import com.example.demo.generics.fruitsandvegetables.Colourable;
 import com.example.demo.generics.fruitsandvegetables.Fruit;
+import com.example.demo.generics.fruitsandvegetables.Growable;
 
 import java.math.BigDecimal;
 
-public class PlasticBagOnlyForFruitAndGrow<T extends Fruit & Growable> {
+public class PlasticBagOnlyForFruitAndGrow<T extends Fruit & Colourable & Growable> {
 
     T fruit;
 
@@ -28,5 +30,17 @@ public class PlasticBagOnlyForFruitAndGrow<T extends Fruit & Growable> {
 
     public void showType() {
         fruit.showFruit(fruit.getClass().getName());
+    }
+
+    public boolean sameColor(PlasticBagOnlyForFruitAndGrow<?> plasticBag){
+        return getPlasticBagColor().equals(plasticBag.getPlasticBagColor());
+    }
+
+    /**
+     * Метод возвращает цвет пластикового пакета в зависимости от фрукта который в нем лежит
+     * @return
+     */
+    public String getPlasticBagColor(){
+        return fruit.getColor();
     }
 }

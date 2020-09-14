@@ -29,9 +29,9 @@ public class DemoApplication {
         //
 //        Banana banana = applePlasticBag.getFruit(); //compile error
         //
-//        applePlasticBag = new PlasticBag<Banana>(new Banana()); //error
+//        applePlasticBag = new PlasticBag<Banana>(new Banana()); //compile error
         //
-//        PlasticBag<int> plasticBagInt = new PlasticBag<int>();//error
+//        PlasticBag<int> plasticBagInt = new PlasticBag<int>();//compile error
 
         //Ключевым моментом для понимания универсальных типов является то,
         // что ссылка на одну конкретную версию универсального типа несовместима
@@ -63,13 +63,32 @@ public class DemoApplication {
 //compile error
 //        PlasticBagOnlyForFruit<Tomato> plasticBagOnlyForFruit =  new PlasticBagOnlyForFruit<Tomato>(new Tomato());//compile error
 
-        //Пример с ограничением классов(нам нужны пакеты только для классов фруктов и тех, кто реализует интерфейс Growable)
+        //Пример с ограничением классов(нам нужны пакеты только для классов фруктов и тех,
+        // кто реализует интерфейс Growable и Colourable)
 //compile error
 //        PlasticBagOnlyForFruitAndGrow<Tomato> tomatoPlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Tomato>(new Tomato());//compile error
-//compile error
-//        PlasticBagOnlyForFruitAndGrow<Apple> applePlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Apple>(new Apple());//compile error
+
+        PlasticBagOnlyForFruitAndGrow<Apple> applePlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Apple>(new Apple());//compile error
+        applePlasticBagOnlyForFruitAndGrow.getFruit().grow();
         PlasticBagOnlyForFruitAndGrow<Banana> bananaPlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Banana>(new Banana());//compile error
         bananaPlasticBagOnlyForFruitAndGrow.getFruit().grow();
+
+        //Using Wildcard Arguments
+        // Как бы ни была полезна безопасность типов, иногда она может мешать совершенно приемлемым конструкциям.
+        // Например, учитывая класс PlasticBagOnlyForFruitAndGrow, предположим,
+        // что вы хотите добавить метод sameColor(), который определяет, содержат ли два объекта
+        // PlasticBagOnlyForFruitAndGrow (пакета) фрукт, возвращающие одинаковый цвет, независимо от того,
+        // какой тип данных(фруктов) содержит каждый объект
+
+        //Добавим в класс PlasticBagOnlyForFruitAndGrow метод sameColor, куда передадим параметризированный обьект
+        //Такая реализация не будет работать пока метод sameColor принимает PlasticBagOnlyForFruitAndGrow<T> plasticBag
+        //Заменим ее на PlasticBagOnlyForFruitAndGrow<?>
+        //Теперь PlasticBagOnlyForFruitAndGrow<?> соответствует любому объекту пакетов с фруктами,
+        // позволяя сравнивать цвет двух обьектов
+        if(applePlasticBagOnlyForFruitAndGrow.sameColor(bananaPlasticBagOnlyForFruitAndGrow)){
+            System.out.println("Color are the same");
+        }else System.out.println("Color are not the same");
+
 
     }
 
