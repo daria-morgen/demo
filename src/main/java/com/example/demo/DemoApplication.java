@@ -128,13 +128,17 @@ public class DemoApplication {
         BoundedWildCards.showVoice(egyptianAnimals);
 
         // Передадим в этот метод объект с собаками.
+        Doberman doberman = new Doberman("black", "wow", "meet");
         Dog dogsAr[] = {
-                new Doberman("black","WOW","meet")
+                doberman
         };
         Animals<Dog> dogs = new Animals<Dog>(dogsAr);
         //compile error
         //BoundedWildCards.showVoice(dogs);
 
+
+        System.out.println(BoundedWildCards.isIn(doberman,dogsAr));
+        System.out.println(BoundedWildCards.isIn(doberman,animalsAr));
 
     }
 
