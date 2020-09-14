@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.demo.generics.PlasticBag;
 import com.example.demo.generics.PlasticBagNonGeneric;
 import com.example.demo.generics.PlasticBagOnlyForFruit;
+import com.example.demo.generics.PlasticBagOnlyForFruitAndGrow;
 import com.example.demo.generics.fruitsandvegetables.Apple;
 import com.example.demo.generics.fruitsandvegetables.Banana;
 import com.example.demo.generics.fruitsandvegetables.Tomato;
@@ -54,7 +55,7 @@ public class DemoApplication {
         //runtime error! java.lang.ClassCastException
 //        Apple appleFromStrangePlasticBagNonGen = (Apple) strangePlasticBagNonGen.getFruit();
 
-        //Пример с ограничением классов(нам нужны пакеты только для фруктов)
+        //Пример с ограничением классов(нам нужны пакеты только для классов фруктов)
         PlasticBagOnlyForFruit<Apple> applePlasticBagOnlyForFruit = new PlasticBagOnlyForFruit<>(new Apple());
         applePlasticBagOnlyForFruit.showType();
         PlasticBagOnlyForFruit<Banana> bananaPlasticBagOnlyForFruit = new PlasticBagOnlyForFruit<Banana>(new Banana());
@@ -62,6 +63,13 @@ public class DemoApplication {
 //compile error
 //        PlasticBagOnlyForFruit<Tomato> plasticBagOnlyForFruit =  new PlasticBagOnlyForFruit<Tomato>(new Tomato());//compile error
 
+        //Пример с ограничением классов(нам нужны пакеты только для классов фруктов и тех, кто реализует интерфейс Growable)
+//compile error
+//        PlasticBagOnlyForFruitAndGrow<Tomato> tomatoPlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Tomato>(new Tomato());//compile error
+//compile error
+//        PlasticBagOnlyForFruitAndGrow<Apple> applePlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Apple>(new Apple());//compile error
+        PlasticBagOnlyForFruitAndGrow<Banana> bananaPlasticBagOnlyForFruitAndGrow =  new PlasticBagOnlyForFruitAndGrow<Banana>(new Banana());//compile error
+        bananaPlasticBagOnlyForFruitAndGrow.getFruit().grow();
 
     }
 
