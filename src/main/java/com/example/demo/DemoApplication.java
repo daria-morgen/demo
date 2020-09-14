@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.generics.PlasticBag;
 import com.example.demo.generics.PlasticBagNonGeneric;
+import com.example.demo.generics.PlasticBagOnlyForFruit;
 import com.example.demo.generics.fruitsandvegetables.Apple;
 import com.example.demo.generics.fruitsandvegetables.Banana;
 import com.example.demo.generics.fruitsandvegetables.Tomato;
@@ -51,11 +52,15 @@ public class DemoApplication {
         PlasticBagNonGeneric strangePlasticBagNonGen = new PlasticBagNonGeneric("Elephant");
 
         //runtime error! java.lang.ClassCastException
-        Apple appleFromStrangePlasticBagNonGen = (Apple) strangePlasticBagNonGen.getFruit();
+//        Apple appleFromStrangePlasticBagNonGen = (Apple) strangePlasticBagNonGen.getFruit();
 
-
-
-
+        //Пример с ограничением классов(нам нужны пакеты только для фруктов)
+        PlasticBagOnlyForFruit<Apple> applePlasticBagOnlyForFruit = new PlasticBagOnlyForFruit<>(new Apple());
+        applePlasticBagOnlyForFruit.showType();
+        PlasticBagOnlyForFruit<Banana> bananaPlasticBagOnlyForFruit = new PlasticBagOnlyForFruit<Banana>(new Banana());
+        bananaPlasticBagOnlyForFruit.showType();
+//compile error
+//        PlasticBagOnlyForFruit<Tomato> plasticBagOnlyForFruit =  new PlasticBagOnlyForFruit<Tomato>(new Tomato());//compile error
 
 
     }
