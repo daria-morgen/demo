@@ -1,6 +1,6 @@
-package com.example.demo.generics.fruitsandvegetables.impl;
+package com.example.demo.generics.plasticBag.fruitsandvegetables.impl;
 
-import com.example.demo.generics.fruitsandvegetables.Growable;
+import com.example.demo.generics.plasticBag.fruitsandvegetables.Growable;
 
 public class Tomato implements Growable {
     @Override

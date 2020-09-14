@@ -1,12 +1,12 @@
 package com.example.demo;
 
-import com.example.demo.generics.PlasticBag;
-import com.example.demo.generics.nonGenericExample.PlasticBagNonGeneric;
-import com.example.demo.generics.PlasticBagOnlyForFruit;
-import com.example.demo.generics.PlasticBagOnlyForFruitAndGrow;
-import com.example.demo.generics.fruitsandvegetables.impl.Apple;
-import com.example.demo.generics.fruitsandvegetables.impl.Banana;
-import com.example.demo.generics.fruitsandvegetables.impl.Tomato;
+import com.example.demo.generics.plasticBag.PlasticBag;
+import com.example.demo.generics.plasticBag.nonGenericExample.PlasticBagNonGeneric;
+import com.example.demo.generics.plasticBag.PlasticBagOnlyForFruit;
+import com.example.demo.generics.plasticBag.PlasticBagOnlyForFruitAndGrow;
+import com.example.demo.generics.plasticBag.fruitsandvegetables.impl.Apple;
+import com.example.demo.generics.plasticBag.fruitsandvegetables.impl.Banana;
+import com.example.demo.generics.plasticBag.fruitsandvegetables.impl.Tomato;
 
 public class DemoApplication {
 
@@ -25,18 +25,16 @@ public class DemoApplication {
         tomatoPlasticBag.showType();
         Tomato tomato = tomatoPlasticBag.getFruit();
 
-        //
+        //нельзя присвоить ссылке на банан обьект из пакета с яблоками.
 //        Banana banana = applePlasticBag.getFruit(); //compile error
-        //
+        // Нельзя ссылке пакету с яблоками присвоить обьект пакета с бананами
 //        applePlasticBag = new PlasticBag<Banana>(new Banana()); //compile error
-        //
+        // Только ссылочные типы
 //        PlasticBag<int> plasticBagInt = new PlasticBag<int>();//compile error
 
         /**Ключевым моментом для понимания универсальных типов является то,
         * что ссылка на одну конкретную версию универсального типа несовместима
-        * с другой версией того же универсального типа. Например, если предположить,
-        * что только что показанная программа, следующая строка кода находится в ошибке
-        * и не будет компилироваться:
+        * с другой версией того же универсального типа.
         */
 //        applePlasticBag = bananaPlasticBag; //error
 

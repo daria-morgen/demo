@@ -1,4 +1,4 @@
-package com.example.demo.generics.fruitsandvegetables;
+package com.example.demo.generics.plasticBag.fruitsandvegetables;
 
 public class Fruit {
 

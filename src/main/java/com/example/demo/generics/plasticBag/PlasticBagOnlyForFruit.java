@@ -1,6 +1,6 @@
-package com.example.demo.generics;
+package com.example.demo.generics.plasticBag;
 
-import com.example.demo.generics.fruitsandvegetables.Fruit;
+import com.example.demo.generics.plasticBag.fruitsandvegetables.Fruit;
 
 import java.math.BigDecimal;
 
