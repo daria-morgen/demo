@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.generics.inheritanceInGenerics.Animals;
+import com.example.demo.generics.inheritanceInGenerics.BoundedWildCards;
+import com.example.demo.generics.inheritanceInGenerics.aminal.*;
 import com.example.demo.generics.plasticBag.PlasticBag;
 import com.example.demo.generics.plasticBag.nonGenericExample.PlasticBagNonGeneric;
 import com.example.demo.generics.plasticBag.PlasticBagOnlyForFruit;
@@ -85,11 +88,53 @@ public class DemoApplication {
         if (applePlasticBagOnlyForFruitAndGrow.sameColor(bananaPlasticBagOnlyForFruitAndGrow)) {
             System.out.println("Color are the same");
         } else System.out.println("Color are not the same");
-
+        System.out.println("=============================================");
         /**
          * Ограниченный подстановочный знак особенно важен при создании
          * универсального типа, который будет работать с иерархией классов
          */
+        Animal animalsAr[] = {
+                new Egyptian("pink","mew","fish"),
+                new Doberman("black","wow","meet")
+        };
+
+        Animals<Animal> animals = new Animals<Animal>(animalsAr);
+        // Добавим метод для вывода цвета всех животных
+        BoundedWildCards.showColor(animals);
+
+
+
+        // Добавим метод для вывода голоса ограничив типы только кошками. используя конструкцию Animals<? extends Cat>
+        // Передадим в этот метод объект с животными.
+        //compile error
+//        BoundedWildCards.showVoice(animals);
+
+
+        Cat catsAr[] = {
+                new Siamese("gray","mew","fish"),
+                new Siamese("black","mew","bird"),
+                new Egyptian("pink","mew","fish")
+
+        };
+        Egyptian egyptian[] = {
+                new Egyptian("pink","mew","fish"),
+                new Egyptian("pink","mew","fish")
+        };
+        // Передадим в этот метод объект с кошками.
+        Animals<Cat> cats = new Animals<Cat>(catsAr);
+        Animals<Egyptian> egyptianAnimals = new Animals<Egyptian>(egyptian);
+
+        BoundedWildCards.showVoice(cats);
+        BoundedWildCards.showVoice(egyptianAnimals);
+
+        // Передадим в этот метод объект с собаками.
+        Dog dogsAr[] = {
+                new Doberman("black","WOW","meet")
+        };
+        Animals<Dog> dogs = new Animals<Dog>(dogsAr);
+        //compile error
+        //BoundedWildCards.showVoice(dogs);
+
 
     }
 
