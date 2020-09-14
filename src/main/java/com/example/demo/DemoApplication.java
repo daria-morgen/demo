@@ -142,6 +142,10 @@ public class DemoApplication {
         System.out.println(BoundedWildCards.isInAnimals(doberman,animalsAr));//true
         System.out.println(BoundedWildCards.isInAnimals(doberman,catsAr));//false
 
+        // Пример указания конкретноготипа привызове обобщенного метода
+        System.out.println(BoundedWildCards.<Animal,Animal>isInAnimals(doberman,catsAr));//false
+//        System.out.println(BoundedWildCards.<Dog,Doberman>isInAnimals(doberman,catsAr));//compile error
+
         //Ожидается что проверяем наличие кошки в коллекции кошек.
         System.out.println(BoundedWildCards.isInCats(siamese,catsAr));//true
 //        System.out.println(BoundedWildCards.isInCats(doberman,catsAr));//compile error
