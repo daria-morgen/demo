@@ -150,12 +150,18 @@ public class DemoApplication {
         //Ожидается что проверяем наличие кошки в коллекции кошек.
         System.out.println(BoundedGeneric.isInCats(siamese,catsAr));//true
 //        System.out.println(BoundedWildCards.isInCats(doberman,catsAr));//compile error
-
+        /**
+         * Generic Constructors
+         */
         BoundedGeneric siameseBoundedGeneric = new BoundedGeneric(siamese);
         System.out.println(siameseBoundedGeneric.getAnimal().showColor());
 
         BoundedGeneric dobermanBoundedGeneric = new BoundedGeneric(doberman);
         System.out.println(dobermanBoundedGeneric.getAnimal().showColor());
+        /**
+         * Generic Interfaces
+         */
+
 
 
     }
